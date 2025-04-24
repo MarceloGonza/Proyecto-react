@@ -1,26 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import { Button } from "./components/Button/Button";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [name, setName] = useState("Marcelo");
+  const [data, setData] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await fetch("https//api.example.com/data");
+      const jsonData = await response.json();
 
-  const countMore = () => {
-    setCount((count) => count + 1);
+      setData(jsonData);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const changeName = () => {
-    setName("Gonzalez");
-  };
-
-  return (
-    <>
-      <Button label={`Count is ${count}`} parentMethod={countMore} />
-      <p>{name}</p>
-      <Button label="changeName" parentMethod={changeName} />
-    </>
-  );
+  //llamada a api
+  useEffect(() => {
+    //logica a ejecutar
+    fetchData();
+  }, [data]);
 }
 
 export default App;
