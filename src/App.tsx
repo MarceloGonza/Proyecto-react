@@ -7,16 +7,20 @@ function App() {
   const [error, setError] = useState("");
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const response = await fetch("https//api.example.com/data");
+
       if (!response.ok) {
         throw new Error("Error al obtener datos");
       }
-      const jsonData = await response.json();
 
+      const jsonData = await response.json();
       setData(jsonData);
     } catch (err) {
       setError(err as string);
+    } finally {
+      setLoading(false);
     }
   };
 
