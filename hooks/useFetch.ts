@@ -16,13 +16,13 @@ export const useFetch = <T>(url: string): Params<T> => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const respone = await fetch(url);
+        const response = await fetch(url);
 
-        if (!respone.ok) {
+        if (!response.ok) {
           throw new Error("Error en la peticion");
         }
 
-        const jsonData: T = await Response.json();
+        const jsonData: T = await response.json();
         setData(jsonData);
       } catch (err) {
         setError(err as Error);
