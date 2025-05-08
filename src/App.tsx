@@ -3,8 +3,14 @@ import { useFetch } from "./../hooks/useFetch";
 
 const url = "https://api.example.com/data";
 
+interface Data {
+  name: string;
+  lastName: string;
+  age: number;
+}
+
 function App() {
-  const { data, error, loading } = useFetch(url);
+  const { data, error, loading } = useFetch<Data>(url);
 
   if (loading) {
     return <div>Cargando...</div>;
