@@ -1,26 +1,23 @@
 import "./App.css";
-import { useFetch } from "./../hooks/useFetch";
-
-const url = "https://api.example.com/data";
-
-interface Data {
-  name: string;
-  lastName: string;
-  age: number;
-}
+import { Button, ColorRed } from "./components";
 
 function App() {
-  const { data, error, loading } = useFetch<Data>(url);
+  const handleClick = () => {
+    console.log("uy me clickeo todo");
+  };
 
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
+  const dimeHola = () => {
+    alert("Hola !!");
+  };
 
-  if (error) {
-    return <div>UPS! Hay un error: {error.message}</div>;
-  }
-
-  return <div>{JSON.stringify(data)}</div>;
+  return (
+    <>
+      <ColorRed>
+        <Button parentMethod={dimeHola}>My Boton Rojo</Button>
+      </ColorRed>
+      <Button parentMethod={handleClick}>My Boton Normal</Button>
+    </>
+  );
 }
 
 export default App;
