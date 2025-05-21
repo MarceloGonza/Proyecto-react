@@ -1,5 +1,6 @@
 import "./App.css";
 import { AppForm, Button, ColorRed } from "./components";
+import { GlobalProvider } from "./../context/global.provider";
 
 function App() {
   // validaciones
@@ -18,17 +19,15 @@ function App() {
   };
 
   return (
-    <>
+    <GlobalProvider>
       <ColorRed>
         <Button parentMethod={dimeHola}>My Boton Rojo</Button>
       </ColorRed>
       <Button parentMethod={handleClick}>My Boton Normal</Button>
       <AppForm>
-        <button type="submit" onClick={submit}>
-          Hola
-        </button>
+        <button type="submit" onClick={submit}></button>
       </AppForm>
-    </>
+    </GlobalProvider>
   );
 }
 
