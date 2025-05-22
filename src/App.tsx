@@ -24,6 +24,7 @@ function App() {
         <Button parentMethod={dimeHola}>My Boton Rojo</Button>
       </ColorRed>
       <Button parentMethod={handleClick}>My Boton Normal</Button>
+
       <AppForm>
         <button type="submit" onClick={submit}></button>
       </AppForm>

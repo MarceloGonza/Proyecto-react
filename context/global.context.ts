@@ -1,12 +1,12 @@
 import { createContext, useContext } from "react";
 
 interface GlobalContextType {
-  value: number;
+  value: number | null;
   setValue: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const GlobalContext = createContext<GlobalContextType>({
-  value: 0,
+  value: null,
   setValue: () => {},
 });
 
