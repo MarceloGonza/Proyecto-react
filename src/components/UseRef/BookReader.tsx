@@ -2,7 +2,7 @@
 //SIN causar un re - render
 //Objetivo 2: hacer referencia a un elemento del DOM
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 //EJEMPLO
 //Un marcador de un libro que utilizamos para guardar la última página de la lectura
@@ -10,6 +10,7 @@ import { useRef } from "react";
 
 export const BookReader = () => {
   const currentPageRef = useRef<number>(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const nextPage = () => {
     currentPageRef.current += 1;
@@ -35,6 +36,7 @@ export const BookReader = () => {
     }
 
     currentPageRef.current = page;
+    setCurrentPage(page);
     console.log(`Saltaste a la página ${currentPageRef.current}`);
   };
 
@@ -42,6 +44,7 @@ export const BookReader = () => {
     <div>
       <h2>Lectura de libro</h2>
       <p>Página actual: {currentPageRef.current}</p>
+      <p>Página actual STATE {currentPage}</p>
       <button onClick={previousPage}>Página Anterior</button>
       <button onClick={nextPage}>Página Siguiente</button>
       <button

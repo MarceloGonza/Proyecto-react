@@ -1,11 +1,13 @@
 import "./App.css";
-import { BookReader } from "./components";
+import { BookReader, FocusInput } from "./components";
 
 function App() {
-  // validaciones
-  // submit
-
-  return <BookReader />;
+  return (
+    <>
+      <BookReader />
+      <FocusInput />
+    </>
+  );
 }
 
 export default App;
