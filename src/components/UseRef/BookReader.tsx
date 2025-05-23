@@ -25,7 +25,7 @@ export const BookReader = () => {
     }
 
     currentPageRef.current -= 1;
-    console.log(`Retrocediste a la página &{currentPageRef.current}`);
+    console.log(`Retrocediste a la página ${currentPageRef.current}`);
   };
 
   const goToPage = (page: number) => {
@@ -35,7 +35,7 @@ export const BookReader = () => {
     }
 
     currentPageRef.current = page;
-    console.log(`Saltaste a la página &{currentPageRef.current}`);
+    console.log(`Saltaste a la página ${currentPageRef.current}`);
   };
 
   return (
