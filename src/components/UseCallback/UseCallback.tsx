@@ -1,7 +1,7 @@
 //Objetivo: se utiliza para memorizar una instancia de una función
 //hace que un hijo no renderize
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 //Ejemplo:
 //Tenes un número de teléfono al que llamas con frecuencia
@@ -49,4 +49,32 @@ export const PhoneBook = () => {
       phone: 123 - 456 - 7890,
     },
   ]);
+
+  const [log, setLog] = useState<string>("");
+
+  const makeCall = useCallback(
+    (phone: string) => setLog(`Llamando al ${phone}`),
+    []
+  );
+
+  const addContact = () => {
+    const newContact = {
+      id: contacts.length + 1,
+      name: `Contacto ${contacts.length + 1}`,
+      phone: `${Math.floor(1000000000 + Math.random() * 9000000000)}`,
+    };
+
+    setContacts([...contacts, newContact]);
+  };
+
+  return (
+    <div>
+      <h2>Agenda de Contacto</h2>
+      {contacts.map((contact) => (
+        <ContactCard key={contact.id} contact={contact} onCall={makeCall} />
+      ))}
+      <button onClick={addContact}>Agregar Contacto</button>
+      <p>{log}</p>
+    </div>
+  );
 };
