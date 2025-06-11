@@ -1,10 +1,10 @@
 import "./App.css";
-import UndefinedExample from "./components/ErrorBoundaryExamples/UndefinedExample";
+import { EffectExample } from "./components/ErrorBoundaryExamples";
 
 function App() {
   return (
     <>
-      <UndefinedExample />
+      <EffectExample />
     </>
   );
 }
