@@ -1,10 +1,10 @@
 import "./App.css";
-import { EffectExample } from "./components/ErrorBoundaryExamples";
+import { PromiseError } from "./components/ErrorBoundaryExamples";
 
 function App() {
   return (
     <>
-      <EffectExample />
+      <PromiseError />
     </>
   );
 }
