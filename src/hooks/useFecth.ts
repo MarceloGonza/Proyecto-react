@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 type Data<T> = T | null;
 type ErrorType = Error | null;
 
@@ -23,10 +24,11 @@ export const useFetch = <T>(url: string): Params<T> => {
         const response = await fetch(url, controller);
 
         if (!response.ok) {
-          throw new Error("Error en la peticion");
+          throw new Error("Error en la petición");
         }
 
         const jsonData: T = await response.json();
+
         setData(jsonData);
         setError(null);
       } catch (err) {
@@ -35,6 +37,7 @@ export const useFetch = <T>(url: string): Params<T> => {
         setLoading(false);
       }
     };
+
     fetchData();
 
     return () => {
