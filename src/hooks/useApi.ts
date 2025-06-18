@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { UseApiCall } from "../models";
 import { useCallback, useEffect, useState } from "react";
 
 type UseApiOptions = {
@@ -15,7 +15,7 @@ interface UseApiResult<T> {
 }
 
 export const useApi = <T>(
-  apiCall: () => Promise<AxiosResponse<T>>,
+  apiCall: UseApiCall<T>,
   options?: UseApiOptions
 ): UseApiResult<T> => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -23,7 +23,7 @@ export const useApi = <T>(
   const [error, setError] = useState<CustomError>(null);
 
   const fetch = useCallback(() => {
-    const call = apiCall();
+    const { call, controller } = apiCall;
     setLoading(true);
     call
       .then((response) => {
@@ -36,6 +36,7 @@ export const useApi = <T>(
       .finally(() => {
         setLoading(false);
       });
+    return () => controller.abort();
   }, [apiCall]);
 
   useEffect(() => {

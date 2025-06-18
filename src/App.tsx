@@ -1,21 +1,27 @@
 import "./App.css";
 import { getCharacter } from "./../services/api.service";
-import { useEffect, useState } from "react";
-import { Character, emptyChatacter } from "./models";
+import { Character } from "./models";
+import { useApi } from "./hooks/useApi";
 
 function App() {
-  const [data, setData] = useState<Character>(emptyChatacter);
+  const { loading, error, data, fetch } = useApi<Character>(getCharacter(1), {
+    autoFetch: true,
+  });
 
-  const fetchMorty = async () => {
-    const result = await getCharacter(1);
-    setData(result.data);
-  };
+  if (loading) {
+    return <p>Cargando</p>;
+  }
 
-  useEffect(() => {
-    fetchMorty();
-  }, []);
+  if (error) {
+    return <p>Ups{error.message}</p>;
+  }
 
-  return <>{JSON.stringify(data)}</>;
+  return (
+    <>
+      {JSON.stringify(data)}
+      <button onClick={fetch}>1</button>
+    </>
+  );
 }
 
 export default App;

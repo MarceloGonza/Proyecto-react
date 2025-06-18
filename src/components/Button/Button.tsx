@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import "./Button.css";
-import { useGlobalContext } from "../../../context/global.context";
+import { useGlobalContext } from "../../context/global.context";
 
 interface Props {
   children: ReactNode;
