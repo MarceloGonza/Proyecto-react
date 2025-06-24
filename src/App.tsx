@@ -1,25 +1,15 @@
 import "./App.css";
-import { getCharacter } from "./../services/api.service";
-import { Character } from "./models";
-import { useApi } from "./hooks/useApi";
+import { ReactNode } from "react";
 
-function App() {
-  const { loading, error, data, fetch } = useApi<Character>(getCharacter(1), {
-    autoFetch: true,
-  });
-
-  if (loading) {
-    return <p>Cargando</p>;
-  }
-
-  if (error) {
-    return <p>Ups{error.message}</p>;
-  }
-
+interface Props {
+  children: ReactNode;
+}
+function App({ children }: Props) {
   return (
     <>
-      {JSON.stringify(data)}
-      <button onClick={fetch}>1</button>
+      <p>Navbar</p>
+      {children}
+      <p>footer</p>
     </>
   );
 }

@@ -1,24 +1,20 @@
-import { ReactNode } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Navigate } from "react-router-dom";
 import { Login } from "./public/Login/Login";
-import { Dashboard } from "./private/Dashboard";
 import { PrivateGuard } from "./guard/PrivateGuard";
+import { PrivateRouter } from "./private/PrivateRouter";
+import { RoutesWithNotFound } from "./src/components/RoutesWithNotFound/RoutesWithNotFound";
 
-interface Props {
-  children: ReactNode;
-}
-
-export const AppRouter = ({ children }: Props) => {
+export const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Routes>
+      <RoutesWithNotFound>
         <Route path="/" element={<Navigate to={"/login"} />} />
         <Route path="/Login" element={<Login />} />
         <Route>
           element={<PrivateGuard />}
-          <Route path="/private" element={<Dashboard />} />
+          <Route path="/private/*" element={<PrivateRouter />} />
         </Route>
-      </Routes>
+      </RoutesWithNotFound>
     </BrowserRouter>
   );
 };
